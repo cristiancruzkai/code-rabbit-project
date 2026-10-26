@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dino Runner - Juego del Dinosaurio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦖</text></svg>">
+</head>
+<body>
+  <div class="game-wrapper">
+    <header class="game-header">
+      <div class="header-titles">
+        <h1>DINO RUNNER</h1>
+        <p class="subtitle">Inspirado en el clásico dinosaurio de Google Chrome</p>
+      </div>
+      <div class="header-controls">
+        <button id="btn-sound" class="btn-icon" title="Silenciar / Activar sonido" aria-label="Sonido">
+          <span class="icon" id="sound-icon">🔊</span>
+        </button>
+        <button id="btn-theme" class="btn-icon" title="Cambiar tema claro / oscuro" aria-label="Tema">
+          <span class="icon" id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="canvas-container">
+      <canvas id="gameCanvas" width="800" height="250"></canvas>
+      
+      <div id="game-overlay" class="game-overlay hidden">
+        <div class="game-over-box">
+          <h2>G A M E &nbsp; O V E R</h2>
+          <button id="btn-restart" class="btn-restart">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.77 20 14.44 20 13c0-4.42-3.58-8-8-8zm-6 8c0-1.01.25-1.97.7-2.8L5.24 8.74C4.46 10.23 4 11.56 4 13c0 4.42 3.58 8 8 8v4l5-5-5-5v4c-3.31 0-6-2.69-6-6z"/>
+            </svg>
+            <span>REINTENTAR</span>
+          </button>
+          <p class="hint">Presiona <strong>Espacio</strong> o toca la pantalla</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="game-footer">
+      <div class="controls-guide">
+        <div class="control-item">
+          <kbd>Espacio</kbd> / <kbd>↑</kbd> o <span class="action-click">Click/Tap</span> : Saltar
+        </div>
+        <div class="control-item">
+          <kbd>↓</kbd> : Agacharse / Caída rápida
+        </div>
+      </div>
+      <div class="mobile-actions">
+        <button id="btn-mobile-jump" class="btn-mobile">Saltar</button>
+        <button id="btn-mobile-duck" class="btn-mobile">Agacharse</button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
