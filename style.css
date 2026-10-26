@@ -138,12 +138,14 @@ canvas#gameCanvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, visibility 0s;
 }
 
 .game-overlay.hidden {
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0s linear 0.2s;
 }
 
 .game-over-box {

@@ -549,9 +549,11 @@
     bindEvents() {
       // Teclado
       window.addEventListener('keydown', (e) => {
-        if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') {
+        const isJumpKey = e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW';
+        const isRestartKey = e.code === 'Enter' && this.state === this.STATE_GAMEOVER;
+        if (isJumpKey || isRestartKey) {
           e.preventDefault();
-          this.triggerJump();
+          if (!e.repeat) this.triggerJump();
         } else if (e.code === 'ArrowDown' || e.code === 'KeyS') {
           e.preventDefault();
           this.setDucking(true);
@@ -574,6 +576,13 @@
       // Botón reiniciar
       this.restartBtn.addEventListener('click', (e) => {
         e.stopPropagation();
+        this.resetGame();
+      });
+
+      // Tocar overlay para reiniciar (sin duplicar click del botón)
+      this.overlay.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('#btn-restart')) return;
+        e.preventDefault();
         this.resetGame();
       });
 
@@ -725,6 +734,9 @@
       } else {
         this.dino.width = this.dino.normalWidth;
         this.dino.height = this.dino.normalHeight;
+      }
+      if (this.dino.isGrounded) {
+        this.dino.y = this.groundY - this.dino.height;
       }
 
       // Gravedad normal o caída rápida al agacharse en el aire
